@@ -3,11 +3,9 @@ import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import styles from './Home.module.css'
 import SmallBarChart from '../../components/smallbarchart'
-import {EnvironmentFilled, SortAscendingOutlined, SettingOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import AQIGaugeChart from '../../components/Airgaugechart'
+import {EnvironmentFilled, SortAscendingOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import 'leaflet/dist/leaflet.css';
 import AQIMarker from '../../components/iconAQI'
-import TickPlacementChart from '../../mui-components/barchart'
 import InfoCard from '../../home-page/mainPage/mainPage'
 import RankingPage from '../../home-page/rankingPage/rankingPage'
 // MapWithMarkers được render bên trong MapContainer nên có thể sử dụng useMap hook
@@ -64,7 +62,6 @@ const MapWithMarkers = ({ locations, onLocationSelect }) => {
 };
 
 const Home = () => {
-  const [data, setData] = useState(null);
   const [locations, setLocations] = useState([]);
   const [selectedTab, setSelectedTab] = useState(0);
   const [selectedLocation, setSelectedLocation] = useState({
@@ -125,7 +122,6 @@ const Home = () => {
           name: location.province_name,
           aqi: location.vn_aqi
         }));
-        console.log('Fetched locations:', formattedLocations); // Log để debug
         setLocations(formattedLocations);
       } catch (error) {
         console.error('Error fetching locations:', error);
@@ -155,14 +151,20 @@ const Home = () => {
             </div>
 
             <div className={styles.tabiconline_item}>
-              <MenuUnfoldOutlined className={styles.tabiconline_item_icon} />
+              <MenuUnfoldOutlined 
+                className={styles.tabiconline_item_icon} 
+              
+              />
             </div>
           </div>
 
 
-          {selectedTab === 0 && <InfoCard selectedLocation={selectedLocation} formattedData={formattedData} />}
+        <div className={styles.content}>
+        {selectedTab === 0 && <InfoCard selectedLocation={selectedLocation} formattedData={formattedData} />}
           {selectedTab === 1 && <div>Page 2 Content</div>}
           {selectedTab === 2 && <RankingPage/>}
+        </div>
+      
         </div>
         
         <MapContainer

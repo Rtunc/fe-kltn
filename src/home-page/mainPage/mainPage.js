@@ -10,7 +10,7 @@ const InfoCard = ({ selectedLocation, formattedData }) => {
         <br />
         <br />
         <span>
-          <strong>Vị trí:</strong> {selectedLocation.position[1]}, {selectedLocation.position[0]}
+          <strong>Kinh độ:</strong> {selectedLocation.position[1]}, <strong>Vĩ độ: </strong> {selectedLocation.position[0]}
         </span>
       </div>
 

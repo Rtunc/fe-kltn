@@ -1,7 +1,7 @@
 import React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
-
+import styles from './barchart.module.css';
 const dummyDataset = [
   { timestamp: '2024-01-01 00:00:00', aqi: 50 },
   { timestamp: '2024-01-01 01:00:00', aqi: 40 },
