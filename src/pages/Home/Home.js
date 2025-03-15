@@ -9,6 +9,7 @@ import 'leaflet/dist/leaflet.css';
 import AQIMarker from '../../components/iconAQI'
 import TickPlacementChart from '../../mui-components/barchart'
 import InfoCard from '../../home-page/mainPage/mainPage'
+import RankingPage from '../../home-page/rankingPage/rankingPage'
 // MapWithMarkers được render bên trong MapContainer nên có thể sử dụng useMap hook
 const MapWithMarkers = ({ locations, onLocationSelect }) => {
   const map = useMap();
@@ -142,7 +143,7 @@ const Home = () => {
 
           {selectedTab === 0 && <InfoCard selectedLocation={selectedLocation} formattedData={formattedData} />}
           {selectedTab === 1 && <div>Page 2 Content</div>}
-          {selectedTab === 2 && <div>Page 3 Content</div>}
+          {selectedTab === 2 && <RankingPage/>}
         </div>
         
         <MapContainer
