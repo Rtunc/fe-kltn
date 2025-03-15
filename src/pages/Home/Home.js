@@ -121,7 +121,10 @@ const Home = () => {
   return (
     <div>
       <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-        <div className={`${styles.box} ${styles.container}`} style={{ position: 'absolute', top: 100, left: '20%', transform: 'translateX(-50%)', zIndex: 1000 }}>
+
+      
+        <div className={`${styles.box} ${styles.container}`} style={{ position: 'absolute', top: 100, left: '240px', transform: 'translateX(-50%)', zIndex: 1000 }}>
+          
           <div className={styles.tabiconline} style={{ borderBottom: '1px solid rgba(0,0,0,0.1)', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex' }}>
               <div className={`${styles.tabiconline_item} ${styles.active}`}>
