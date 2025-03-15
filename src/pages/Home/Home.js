@@ -24,7 +24,23 @@ const MapWithMarkers = ({ locations, onLocationSelect }) => {
   }, [locations, map]);
 
   const handleMarkerClick = (location) => {
-    map.setView(location.position, map.getZoom());
+    // Only zoom out if location is not visible on current map bounds
+    const bounds = map.getBounds();
+    if (!bounds.contains(location.position)) {
+      map.flyTo([16.0, 106.0], 5, {
+        duration: 1.5, // Duration in seconds
+        easeLinearity: 0.25
+      });
+    }
+
+    // After zoom out transition, fly to selected location
+    setTimeout(() => {
+      map.flyTo(location.position, 13, {
+        duration: 1.5,
+        easeLinearity: 0.25
+      });
+    }, 0);
+
     // Update both position and aqi when marker is clicked
     onLocationSelect({
       position: location.position,
@@ -153,6 +169,7 @@ const Home = () => {
           center={selectedLocation.position}
           zoom={13}
           style={{ width: '100%', height: '100%' }}
+          zoomControl={false}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
