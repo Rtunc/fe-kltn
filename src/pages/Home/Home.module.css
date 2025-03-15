@@ -1,0 +1,119 @@
+.box {
+    width: 400px;
+    height: 48px;
+    border-radius: 6px;
+    background-color: white;
+}
+.fa-magnifying-glass{
+    width: 20px;
+    color: black;
+}
+.icon{
+    font-size: 20px;
+}
+.container {
+    height: 80%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 70px 0px;
+    background-color: rgb(255, 255, 255);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 70px 0px;
+    display: flex;
+    flex-direction: column;
+    font-family: Roboto, sans-serif;
+    opacity: 1;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    transition-behavior: normal;
+    transition-delay: 0.2s;
+    transition-duration: 0.4s;
+    transition-property: opacity, transform;
+    transition-timing-function: ease;
+    unicode-bidi: isolate;
+}
+.info-card {
+    width: 340px;
+    height: 223px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 70px 0px;
+    display: flex;
+    flex-direction: column;
+    font-family: Roboto, sans-serif;
+    margin-top: 14px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .aqi-info {
+    text-align: center;
+    color: #fff;
+    background-color: #d9534f;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  
+  .aqi-info h1 {
+    margin: 0;
+    font-size: 2em;
+  }
+  
+  .details {
+    display: flex;
+    justify-content: space-around;
+    color: #333;
+  }
+  
+  .detail-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .detail-item span {
+    margin-right: 5px;
+  }
+  .tabiconline {
+    display: flex;
+    height: 50px;
+    line-height: 16px;
+    transition-behavior: normal;
+    transition-delay: 0s;
+    transition-duration: 0.1s;
+    transition-property: all;
+    transition-timing-function: ease-in;
+    unicode-bidi: isolate;
+    user-select: none;
+  }
+  .tabiconline_item {
+    display: flex;
+    flex-direction: column;
+    font-family: Roboto, sans-serif;
+    height: 50px;
+    justify-content: space-between;
+    line-height: 16px;
+    unicode-bidi: isolate;
+    user-select: none;
+    width: 48px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .tabiconline_item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .tabiconline_item:hover .tabiconline_item_icon {
+    color: #1890ff;
+    transition: color 0.3s ease;
+  }
+
+
+  .tabiconline_item_icon{
+    padding: 16px;
+  }

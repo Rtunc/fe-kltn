@@ -1,0 +1,15 @@
+.info_card{
+    padding: 16px;
+  }
+  .title{
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    text-align: left    ;
+    margin-bottom: 10px;
+  }
+  
+  .location_info{
+    font-size: 14px;
+    text-align: left;
+  }
