@@ -86,6 +86,7 @@ const Home = () => {
           name: location.province_name,
           aqi: location.vn_aqi
         }));
+        console.log(formattedLocations);
         setLocations(formattedLocations);
       } catch (error) {
         console.error('Error fetching locations:', error);
@@ -146,6 +147,15 @@ const Home = () => {
             <input 
               type="text"
               placeholder="Tìm kiếm địa điểm..."
+              onFocus={() => {
+                const element = document.querySelector(`.${styles.searchBar_item}`);
+                console.log("Giá trị của searchBar_item:", styles.searchBar_item);
+                console.log("Số lượng phần tử phù hợp:", document.querySelectorAll(`.${styles.searchBar_item}`).length);
+                console.log(element);
+                if (element) {
+                  element.style.display = 'block';
+                }
+              }}
               style={{
                 border: 'none',
                 outline: 'none',
@@ -154,8 +164,28 @@ const Home = () => {
               }}
             />
           </div>
+          <div className={styles.searchBar_item}>
+            {locations.map((location, index) => (
+              <div 
+                key={index} 
+                onClick={() => setSelectedLocation(location)}
+                style={{
+                  padding: '8px 16px',
+                  cursor: 'pointer',
+                  display: 'none',
+                  backgroundColor: 'white',
+                  '&:hover': {
+                    backgroundColor: 'rgba(0, 0, 0, 0.05)'
+                  }
+                }}
+              >
+                {location.name}
+              </div>
+            ))}
+          </div>
         </div>
-        <div className={`${styles.box} ${styles.container}`} style={{ position: 'absolute', top: 100, left: '240px', transform: 'translateX(-50%)', zIndex: 1000 }}>
+
+        <div className={`${styles.box} ${styles.container}`} style={{ position: 'absolute', top: 100, left: '240px', transform: 'translateX(-50%)', zIndex:999 }}>
           <div className={styles.tabiconline} style={{ borderBottom: '1px solid rgba(0,0,0,0.1)', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex' }}>
               <div className={`${styles.tabiconline_item} ${styles.active}`}>
@@ -186,6 +216,7 @@ const Home = () => {
           zoom={13}
           style={{ width: '100%', height: '100%' }}
           zoomControl={false}
+          
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

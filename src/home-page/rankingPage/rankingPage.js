@@ -35,7 +35,6 @@ const RankingPage = () => {
         // Sort data by vn_aqi in ascending order
         data.sort((a, b) => a.vn_aqi - b.vn_aqi);
         setRankingData(data); 
-        console.log('Ranking data:', data);
       } catch (error) {
         console.error('Error fetching ranking data:', error);
       }
