@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
+import { EnvironmentFilled, SortAscendingOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import 'leaflet/dist/leaflet.css';
-import styles from './Home.module.css'
-import SmallBarChart from '../../components/smallbarchart'
-import {EnvironmentFilled, SortAscendingOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import 'leaflet/dist/leaflet.css';
-import AQIMarker from '../../components/iconAQI'
-import InfoCard from '../../home-page/mainPage/mainPage'
-import RankingPage from '../../home-page/rankingPage/rankingPage'
+import styles from './Home.module.css';
+import SmallBarChart from '../../components/smallbarchart';
+import AQIMarker from '../../components/iconAQI';
+import InfoCard from '../../home-page/mainPage/mainPage';
+import RankingPage from '../../home-page/rankingPage/rankingPage';
+
 // MapWithMarkers được render bên trong MapContainer nên có thể sử dụng useMap hook
 const MapWithMarkers = ({ locations, onLocationSelect }) => {
   const map = useMap();
@@ -69,44 +69,8 @@ const Home = () => {
     name: "Hà Nội",
     aqi: NaN
   });
-  
   const [formattedData, setFormattedData] = useState([]);
 
-  // Fetch hourly data when selectedLocation changes
-  useEffect(() => {
-    const fetchHourlyData = async () => {
-      try {
-        const response = await fetch(`http://127.0.0.1:8000/get_hourly_data?q=${selectedLocation.name}`, 
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-        if (!response.ok) {
-          throw new Error('Failed to fetch hourly data');
-        }
-        const data = await response.json();
-        console.log('Fetched hourly data:', data); // Log để debug
-        
-        // Transform data to only keep timestamp and rename vn_aqi to aqi
-        const formattedData = data.map(item => ({
-          timestamp: item.timestamp,
-          aqi: item.vn_aqi
-        }));
-        
-        setFormattedData(formattedData);
-      } catch (error) {
-        console.error('Error fetching hourly data:', error);
-      }
-    };
-
-    if (selectedLocation.name) {
-      fetchHourlyData();
-    }
-  }, [selectedLocation.name]);
-  
   // Fetch data khi component mount
   useEffect(() => {
     const fetchLocations = async () => {
@@ -130,13 +94,68 @@ const Home = () => {
     fetchLocations();
   }, []);
 
+  // Fetch hourly data when selectedLocation changes
+  useEffect(() => {
+    const fetchHourlyData = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/get_hourly_data?q=${selectedLocation.name}`, 
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error('Failed to fetch hourly data');
+        }
+        const data = await response.json();
+        
+        // Transform data to only keep timestamp and rename vn_aqi to aqi
+        const formattedData = data.map(item => ({
+          timestamp: item.timestamp,
+          aqi: item.vn_aqi
+        }));
+        
+        setFormattedData(formattedData);
+      } catch (error) {
+        console.error('Error fetching hourly data:', error);
+      }
+    };
+
+    if (selectedLocation.name) {
+      fetchHourlyData();
+    }
+  }, [selectedLocation.name]);
+
   return (
     <div>
       <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-
-      
+        <div className={styles.searchBar} style={{ position: 'absolute', top: 24, left: '240px', transform: 'translateX(-50%)', zIndex: 1000 }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            padding: '8px 16px',
+            backgroundColor: '#fff',
+            borderRadius: '4px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            height: '35px',
+            width: '368px'
+          }}>
+            <i className="fa-solid fa-magnifying-glass" style={{color: '#666', marginRight: '8px'}}></i>
+            <input 
+              type="text"
+              placeholder="Tìm kiếm địa điểm..."
+              style={{
+                border: 'none',
+                outline: 'none',
+                width: '100%',
+                fontSize: '14px'
+              }}
+            />
+          </div>
+        </div>
         <div className={`${styles.box} ${styles.container}`} style={{ position: 'absolute', top: 100, left: '240px', transform: 'translateX(-50%)', zIndex: 1000 }}>
-          
           <div className={styles.tabiconline} style={{ borderBottom: '1px solid rgba(0,0,0,0.1)', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex' }}>
               <div className={`${styles.tabiconline_item} ${styles.active}`}>
@@ -151,20 +170,15 @@ const Home = () => {
             </div>
 
             <div className={styles.tabiconline_item}>
-              <MenuUnfoldOutlined 
-                className={styles.tabiconline_item_icon} 
-              
-              />
+              <MenuUnfoldOutlined className={styles.tabiconline_item_icon} />
             </div>
           </div>
 
-
-        <div className={styles.content}>
-        {selectedTab === 0 && <InfoCard selectedLocation={selectedLocation} formattedData={formattedData} />}
-          {selectedTab === 1 && <div>Page 2 Content</div>}
-          {selectedTab === 2 && <RankingPage/>}
-        </div>
-      
+          <div className={styles.content}>
+            {selectedTab === 0 && <InfoCard selectedLocation={selectedLocation} formattedData={formattedData} />}
+            {selectedTab === 1 && <div>Page 2 Content</div>}
+            {selectedTab === 2 && <RankingPage/>}
+          </div>
         </div>
         
         <MapContainer
@@ -182,11 +196,8 @@ const Home = () => {
         </MapContainer>
 
         <SmallBarChart />
-
-
       </div>
     </div>
-
   );
 };
 
