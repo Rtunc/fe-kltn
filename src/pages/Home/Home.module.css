@@ -116,4 +116,12 @@
     padding: 16px;
   }
 
- 
+  .tabiconline_item_collapse{
+    padding: 16px;
+
+  }
+  .active {
+    background-color: rgba(24, 144, 255, 0.1);
+    border-bottom: 2px solid #1890ff;
+    /* Hoặc các style khác để highlight tab đang được chọn */
+  }

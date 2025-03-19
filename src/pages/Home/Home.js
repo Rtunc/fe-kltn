@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
-import { EnvironmentFilled, SortAscendingOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { EnvironmentFilled, SortAscendingOutlined } from '@ant-design/icons';
 import 'leaflet/dist/leaflet.css';
 import styles from './Home.module.css';
 import SmallBarChart from '../../components/smallbarchart';
 import AQIMarker from '../../components/iconAQI';
 import InfoCard from '../../home-page/mainPage/mainPage';
 import RankingPage from '../../home-page/rankingPage/rankingPage';
-
+import WeatherComponent from '../../home-page/weatherPage/weatherPage';
 // MapWithMarkers được render bên trong MapContainer nên có thể sử dụng useMap hook
 const MapWithMarkers = ({ locations, onLocationSelect }) => {
   const map = useMap();
@@ -77,6 +77,8 @@ const Home = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
 
   // Tạo ref để truy cập map
   const mapRef = useRef(null);
@@ -222,6 +224,8 @@ const Home = () => {
       contentPageRef.current.style.display = 
         contentPageRef.current.style.display === 'none' ? 'block' : 'none';
     }
+    setIsCollapsed(!isCollapsed);
+
   };
 
   return (
@@ -322,22 +326,37 @@ const Home = () => {
         <div className={`${styles.box} ${styles.container}`} style={{ position: 'absolute', top: 100, left: '240px', width: '400px', transform: 'translateX(-50%)', zIndex:999 }}>
           <div className={styles.tabiconline} style={{ borderBottom: '1px solid rgba(0,0,0,0.1)', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex' }}>
-              <div className={`${styles.tabiconline_item} ${styles.active}`}>
-                <EnvironmentFilled className={styles.tabiconline_item_icon} onClick={() => setSelectedTab(0)} />
+              <div className={`${styles.tabiconline_item} ${selectedTab === 0 ? styles.active : ''}`}>
+                <EnvironmentFilled 
+                  className={styles.tabiconline_item_icon} 
+                  onClick={() => setSelectedTab(0)}
+                  style={{color: selectedTab === 0 ? '#1890ff' : 'inherit'}}
+                />
               </div>
-              <div className={`${styles.tabiconline_item} ${styles.active}`}>
-                <EnvironmentFilled className={styles.tabiconline_item_icon} onClick={() => setSelectedTab(1)} />
+              <div className={`${styles.tabiconline_item} ${selectedTab === 1 ? styles.active : ''}`}>
+                <EnvironmentFilled 
+                  className={styles.tabiconline_item_icon} 
+                  onClick={() => setSelectedTab(1)}
+                  style={{color: selectedTab === 1 ? '#1890ff' : 'inherit'}}
+                />
               </div>
-              <div className={`${styles.tabiconline_item} ${styles.active}`}>
-                <SortAscendingOutlined className={styles.tabiconline_item_icon} onClick={() => setSelectedTab(2)} />
+              <div className={`${styles.tabiconline_item} ${selectedTab === 2 ? styles.active : ''}`}>
+                <SortAscendingOutlined 
+                  className={styles.tabiconline_item_icon} 
+                  onClick={() => setSelectedTab(2)}
+                  style={{color: selectedTab === 2 ? '#1890ff' : 'inherit'}}
+                />
               </div>
             </div>
 
             <div className={styles.tabiconline_item}>
-              <MenuUnfoldOutlined 
-                className={styles.tabiconline_item_icon} 
+              
+              <div 
+                className={styles.tabiconline_item_collapse}
                 onClick={handleClick}
-              />
+              >
+                <i className={`fa-solid ${isCollapsed ? 'fa-chevron-down' : 'fa-chevron-up'}`}></i>
+              </div>
             </div>
           </div>
 
@@ -346,7 +365,7 @@ const Home = () => {
             className={styles.contentPage}
           >
             {selectedTab === 0 && <InfoCard selectedLocation={selectedLocation} formattedData={formattedData} />}
-            {selectedTab === 1 && <div>Page 2 Content</div>}
+            {selectedTab === 1 && <WeatherComponent name = {selectedLocation.name} ></WeatherComponent>}
             {selectedTab === 2 && <RankingPage/>}
           </div>
         </div>
