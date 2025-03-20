@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
+import styles from './weatherPage.module.css';
+import {WindBox} from './windbox';
 const WeatherComponent = ({ name }) => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -59,12 +60,10 @@ const WeatherComponent = ({ name }) => {
   if (!weatherData) return null;
 
   return (
-    <div>
-      <h2>Weather Data for {name}</h2>
-      <pre style={{whiteSpace: 'pre-wrap'}}>
-        {JSON.stringify(weatherData, null, 2)}
-      </pre>
+    <div className = {styles.weatherPage}>
+        <WindBox weatherData={weatherData} />
     </div>
+
   );
 };
 

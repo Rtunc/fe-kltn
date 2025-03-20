@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
-import { EnvironmentFilled, SortAscendingOutlined } from '@ant-design/icons';
+import { SortAscendingOutlined } from '@ant-design/icons';
 import 'leaflet/dist/leaflet.css';
 import styles from './Home.module.css';
 import SmallBarChart from '../../components/smallbarchart';
@@ -327,17 +327,19 @@ const Home = () => {
           <div className={styles.tabiconline} style={{ borderBottom: '1px solid rgba(0,0,0,0.1)', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex' }}>
               <div className={`${styles.tabiconline_item} ${selectedTab === 0 ? styles.active : ''}`}>
-                <EnvironmentFilled 
-                  className={styles.tabiconline_item_icon} 
+                <img 
+                  src="/air-quality-index-aqi-icon-white_116137-12900.avif"
+                  alt="AQI Icon"
+                  className={styles.tabiconline_item_icon}
                   onClick={() => setSelectedTab(0)}
                   style={{color: selectedTab === 0 ? '#1890ff' : 'inherit'}}
                 />
               </div>
               <div className={`${styles.tabiconline_item} ${selectedTab === 1 ? styles.active : ''}`}>
-                <EnvironmentFilled 
-                  className={styles.tabiconline_item_icon} 
-                  onClick={() => setSelectedTab(1)}
-                  style={{color: selectedTab === 1 ? '#1890ff' : 'inherit'}}
+                <i 
+                  className="fa-solid fa-sun"
+                  onClick={() => setSelectedTab(1)} 
+                  style={{padding: '16px', color: selectedTab === 1 ? '#1890ff' : 'inherit'}}
                 />
               </div>
               <div className={`${styles.tabiconline_item} ${selectedTab === 2 ? styles.active : ''}`}>

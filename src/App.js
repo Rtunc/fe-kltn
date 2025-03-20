@@ -8,13 +8,11 @@ import React from 'react';
 
 function App() {
   return (
-
     <BrowserRouter>
-      <div className="App">
+      <div className="App" style={{ overflow: 'hidden' }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="Test" element={<Test />} />
-            {/* <Route path="/visual" element={<Visual />} /> */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
       </div>
