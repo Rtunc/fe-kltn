@@ -35,7 +35,7 @@ export const ForecastTable = () => {
         style={{height: '48px', '&:hover': {backgroundColor: 'rgba(0, 0, 0, 0.04)'}}}
       >
         <TableCell align="center" style={{color: 'black'}}>{index + 1}</TableCell>
-        <TableCell align="left" style={{color: 'black'}}><div style={{display: 'flex', alignItems: 'center'}}><div className={styles.location_icon}><i className="fa-solid fa-calendar-day"/></div><div>{row.day}</div></div></TableCell>
+        <TableCell align="left" style={{color: 'black'}}><div style={{display: 'flex', alignItems: 'center'}}><div className={styles.location_icon}></div><div>{row.day}</div></div></TableCell>
         <TableCell align="center"><AQIRankingButton value={row.aqi}/></TableCell>
         <TableCell align="center" style={{color: 'black'}}>
           {index > 0 ? (

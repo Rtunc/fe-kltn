@@ -26,3 +26,6 @@
         transparent 100%
     );
 }
+.title > i {
+    margin-right: 8px;
+}
