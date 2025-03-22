@@ -44,3 +44,13 @@
 .sugestion_text{
   text-align: left;
 }
+.chart_container{
+  margin-top: 40px;
+}
+
+.chart_title{
+  font-size: 14px;
+  color: #333;
+  text-align: left;
+  margin-bottom: 10px;
+}

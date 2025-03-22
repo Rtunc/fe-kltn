@@ -2,6 +2,11 @@ import AQIGaugeChart from '../../components/Airgaugechart'
 import TickPlacementChart from '../../mui-components/barchart'
 import styles from './mainPage.module.css'
 import { ForecastTable } from './forecastComponent';
+import { Segmented } from 'antd';
+
+
+
+
 
 const InfoCard = ({ selectedLocation, formattedData }) => {
 
@@ -50,8 +55,22 @@ const InfoCard = ({ selectedLocation, formattedData }) => {
         </span>
       </div>
 
+
       <AQIGaugeChart value={selectedLocation.aqi} />
-      <TickPlacementChart data={formattedData}/>
+
+      <div className={styles.chart_container}>
+        <div className={styles.chart_title}>
+          Diễn biến AQI và nồng độ các chất ô nhiễm 24h qua
+        </div>
+        <Segmented
+          options={['AQI', 'CO', 'No2', 'O3', 'PM-10', 'PM-2.5','SO2']} 
+          onChange={(value) => {
+            console.log(value);
+          }}
+        />
+        <TickPlacementChart data={formattedData}/>
+       
+      </div>
 
 
       {/* Thẻ in ra khuyến cáo */}

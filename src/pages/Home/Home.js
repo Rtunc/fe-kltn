@@ -124,7 +124,7 @@ const Home = () => {
           throw new Error('Failed to fetch hourly data');
         }
         const data = await response.json();
-        
+        console.log(data);
         // Transform data to only keep timestamp and rename vn_aqi to aqi
         const formattedData = data.map(item => ({
           timestamp: item.timestamp,
