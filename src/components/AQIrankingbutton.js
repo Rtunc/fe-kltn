@@ -21,7 +21,6 @@ const AQIRankingButton = ({ value }) => {
         justifyContent: 'center',
         borderRadius: '12px',
         backgroundColor: getBackgroundColor(value),
-        color: value <= 50 ? '#000' : '#fff',
         fontSize: '14px',
         fontWeight: '500'
       }}

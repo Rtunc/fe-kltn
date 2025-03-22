@@ -62,6 +62,8 @@ const WeatherComponent = ({ name }) => {
   return (
     <div className = {styles.weatherPage}>
         <WindBox weatherData={weatherData} />
+       
+        
     </div>
 
   );

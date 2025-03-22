@@ -13,3 +13,34 @@
     font-size: 14px;
     text-align: left;
   }
+  
+
+.sugestion {
+  background-color: #f0f0f0;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+
+.icon> i{
+  width: 36px;
+  height: 36px;
+  background-color:  green;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:white;
+}
+.sugestion{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 8px;
+}
+.sugestion_text{
+  text-align: left;
+}

@@ -2,25 +2,3 @@
     padding: 16px;
 
 }
-.windbox{
-    border-radius: 16px;
-    background-color: #e7e7e7;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #e7e7e7;
-    text-align: left;
-}
-
-.windtext{
-    font-size: 16px;
-    font-weight: 400;
-    color: #000000;
-    margin-left: 60px;
-    margin-bottom: 10px;
-}
-
-.windtext > span{
-    font-size: 24px;
-    font-weight: 600;
-    margin-top: 20px;
-}

@@ -1,7 +1,43 @@
 import AQIGaugeChart from '../../components/Airgaugechart'
 import TickPlacementChart from '../../mui-components/barchart'
 import styles from './mainPage.module.css'
+import { ForecastTable } from './forecastComponent';
+
 const InfoCard = ({ selectedLocation, formattedData }) => {
+
+  const getSuggestion = (aqi) => {
+    if (aqi <= 50) {
+      return "Chất lượng không khí tốt. Thích hợp cho các hoạt động ngoài trời.";
+    } else if (aqi <= 100) {
+      return "Chất lượng không khí ở mức chấp nhận được; tuy nhiên, một số chất gây ô nhiễm có thể ảnh hưởng tới sức khỏe của một số ít những người nhạy cảm với không khí bị ô nhiễm.";
+    } else if (aqi <= 150) {
+      return "Không khí không lành mạnh cho nhóm người nhạy cảm. Người già và trẻ em nên hạn chế ra ngoài.";
+    } else if (aqi <= 200) {
+      return "Không khí không lành mạnh. Mọi người nên hạn chế hoạt động ngoài trời. Đeo khẩu trang khi ra ngoài.";
+    } else if (aqi <= 300) {
+      return "Không khí rất không lành mạnh. Tránh hoạt động ngoài trời. Đeo khẩu trang và kính bảo vệ khi buộc phải ra ngoài.";
+    } else {
+      return "Nguy hiểm! Tránh mọi hoạt động ngoài trời. Đóng kín cửa và sử dụng máy lọc không khí trong nhà.";
+    }
+  };
+
+
+  const getAQIColor = (aqi) => {
+    if (aqi <= 50) {
+      return { backgroundColor: '#a8e05f', borderColor: '#87c13c' }; // Xanh lá - Tốt
+    } else if (aqi <= 100) {
+      return { backgroundColor: '#fdd74b', borderColor: '#efbe22' }; // Vàng - Trung bình
+    } else if (aqi <= 150) {
+      return { backgroundColor: '#fe9b57', borderColor: '#e97d32' }; // Cam - Không tốt cho nhóm nhạy cảm
+    } else if (aqi <= 200) {
+      return { backgroundColor: '#fe6a69', borderColor: '#e64c4b' }; // Đỏ - Không lành mạnh
+    } else if (aqi <= 300) {
+      return { backgroundColor: '#a97abc', borderColor: '#8a5d9d' }; // Tím - Rất không lành mạnh
+    } else {
+      return { backgroundColor: '#a87383', borderColor: '#915e6b' }; // Nâu đỏ - Nguy hiểm
+    }
+  };
+
   return (
     <div className={styles.info_card} style={{ maxHeight: '80vh', overflowY: 'auto' }}>
       <div className={styles.title}>Điểm đang chọn </div>
@@ -16,6 +52,27 @@ const InfoCard = ({ selectedLocation, formattedData }) => {
 
       <AQIGaugeChart value={selectedLocation.aqi} />
       <TickPlacementChart data={formattedData}/>
+
+
+      {/* Thẻ in ra khuyến cáo */}
+      <div className={styles.sugestion} style={getAQIColor(selectedLocation.aqi)}>
+        <div className={styles.icon}>
+        <i style = {{backgroundColor: getAQIColor(selectedLocation.aqi).borderColor}} class="fa-solid fa-heart-pulse"></i>
+        </div>
+        <div>
+        <div className={styles.title}>Khuyến cáo</div>
+          <div className={styles.sugestion_text}>
+            {getSuggestion(selectedLocation.aqi)}
+          </div>
+        </div>
+      </div>
+
+
+      {/* Thẻ in ra Dự báo tiếp theo */}
+      <ForecastTable />
+
+
+
     </div>
   );
 };
