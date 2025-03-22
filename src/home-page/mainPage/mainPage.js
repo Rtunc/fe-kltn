@@ -3,12 +3,14 @@ import TickPlacementChart from '../../mui-components/barchart'
 import styles from './mainPage.module.css'
 import { ForecastTable } from './forecastComponent';
 import { Segmented } from 'antd';
-
+import { useState } from 'react';
 
 
 
 
 const InfoCard = ({ selectedLocation, formattedData }) => {
+  const [selectedDataKey, setSelectedDataKey] = useState('aqi');
+  const [selectedLabel, setSelectedLabel] = useState('AQI');
 
   const getSuggestion = (aqi) => {
     if (aqi <= 50) {
@@ -65,10 +67,38 @@ const InfoCard = ({ selectedLocation, formattedData }) => {
         <Segmented
           options={['AQI', 'CO', 'No2', 'O3', 'PM-10', 'PM-2.5','SO2']} 
           onChange={(value) => {
-            console.log(value);
+            console.log(value); 
+            setSelectedLabel(value);
+            console.log(selectedLabel);
+            switch(value) {
+              case 'AQI':
+                setSelectedDataKey('aqi');
+                break;
+              case 'CO': 
+                setSelectedDataKey('co');
+                break;
+              case 'No2':
+                setSelectedDataKey('no2');
+                break;
+              case 'O3':
+                setSelectedDataKey('o3');
+                break;
+              case 'PM-10':
+                setSelectedDataKey('pm10');
+                break;
+              case 'PM-2.5':
+                setSelectedDataKey('pm25');
+                break;
+              case 'SO2':
+                setSelectedDataKey('so2');
+                break;
+              default:
+                setSelectedDataKey('aqi');
+            }
+            console.log(selectedLabel);
           }}
         />
-        <TickPlacementChart data={formattedData}/>
+        <TickPlacementChart data={formattedData} label={selectedLabel} dataKey={selectedDataKey}/>
        
       </div>
 
@@ -87,8 +117,7 @@ const InfoCard = ({ selectedLocation, formattedData }) => {
       </div>
 
 
-      {/* Thẻ in ra Dự báo tiếp theo */}
-      <ForecastTable />
+      <ForecastTable name={selectedLocation.name} />
 
 
 

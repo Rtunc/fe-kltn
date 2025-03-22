@@ -1,6 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import AQIGaugeChart from '../../components/Airgaugechart'
-import TickPlacementChart from '../../mui-components/barchart'
 
 const Test = () => {
   const containerRef = useRef(null);

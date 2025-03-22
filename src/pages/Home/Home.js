@@ -70,7 +70,7 @@ const Home = () => {
   const [selectedTab, setSelectedTab] = useState(0);
   const [selectedLocation, setSelectedLocation] = useState({
     position: [0, 0],
-    name: "Hà Nội",
+    name: "",
     aqi: NaN
   });
   const [formattedData, setFormattedData] = useState([]);

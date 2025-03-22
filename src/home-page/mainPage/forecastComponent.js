@@ -2,7 +2,7 @@ import { Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
 import styles from './forecastComponent.module.css';
 import AQIRankingButton from '../../components/AQIrankingbutton';
 
-export const ForecastTable = () => {
+export const ForecastTable = ({name}) => {
   const dummyData = [
     { day: 'Thứ 2', aqi: 45 },
     { day: 'Thứ 3', aqi: 67 },
@@ -16,7 +16,7 @@ export const ForecastTable = () => {
   return (
 <div className = {styles.forecast_table_container}>
 <div className = {styles.title}>
-<i class="fa-solid fa-chart-simple"></i> Dự báo 7 ngày tiếp theo tại: Hà Nội</div>
+<i class="fa-solid fa-chart-simple"></i> Dự báo 7 ngày tiếp theo tại: {name}</div>
 
 <Table>
   <TableHead>

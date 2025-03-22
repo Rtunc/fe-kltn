@@ -1,7 +1,6 @@
 import React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
-import styles from './barchart.module.css';
 const dummyDataset = [
   { timestamp: '2024-01-01 00:00:00', aqi: 50 },
   { timestamp: '2024-01-01 01:00:00', aqi: 40 },
@@ -29,10 +28,10 @@ const dummyDataset = [
   { timestamp: '2024-01-01 23:00:00', aqi: 155 }
 ];
 
-const BarChartComponent = ({ dataset }) => {
+const BarChartComponent = ({ dataset, label, dataKey }) => {
   const chartSetting = {
-    yAxis: [{ label: 'AQI' }],
-    series: [{ dataKey: 'aqi', label: 'Air Quality Index' }],
+    yAxis: [{ label: label || 'AQI' }],
+    series: [{ dataKey: dataKey || 'aqi' }],
     height: 300,
     sx: {
       [`& .${axisClasses.directionY} .${axisClasses.label}`]: {
@@ -50,10 +49,10 @@ const BarChartComponent = ({ dataset }) => {
   );
 };
 
-const TickPlacementChart = ({ data = dummyDataset }) => {
+const TickPlacementChart = ({ data = dummyDataset, label, dataKey }) => {
   return (
     <div style={{ width: '100%' }}>
-      <BarChartComponent dataset={data} />
+      <BarChartComponent dataset={data} label={label} dataKey={dataKey} />
     </div>
   );
 };
