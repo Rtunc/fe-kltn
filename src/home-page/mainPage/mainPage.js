@@ -46,7 +46,7 @@ const InfoCard = ({ selectedLocation, formattedData }) => {
   };
 
   return (
-    <div className={styles.info_card} style={{ maxHeight: '80vh', overflowY: 'auto' }}>
+    <div className={styles.info_card}>
       <div className={styles.title}>Điểm đang chọn </div>
       <div className={styles.location_info}>
         <strong>Tỉnh, thành phố:</strong> {selectedLocation.name}

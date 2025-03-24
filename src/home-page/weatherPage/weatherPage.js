@@ -10,7 +10,7 @@ const WeatherComponent = ({ name }) => {
     const fetchWeatherData = async () => {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=53c1aff24bc4a21a54b738d80200edc0`
+          `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=9d026f9defad1a66e14194bf4ac5425b`
         );
         
         if (!response.ok) {
@@ -62,8 +62,26 @@ const WeatherComponent = ({ name }) => {
   return (
     <div className = {styles.weatherPage}>
         <WindBox weatherData={weatherData} />
-       
+
         
+        <div className = {styles.doam_title}> 
+          <div>Độ ẩm</div>
+          <div style={{display:'flex'}}>
+            <div className = {styles.doam_content}>
+            <span>
+              59%
+            </span>
+            <span>
+              Điểm
+            </span>
+            </div>
+            <div className = {styles.doam_icon}>
+
+            </div>
+            
+
+          </div>
+        </div>
     </div>
 
   );

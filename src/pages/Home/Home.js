@@ -361,7 +361,13 @@ const Home = () => {
 
         <div 
           ref={contentPageRef}
-          style={{ maxHeight: 'calc(100vh - 200px)', overflowY: 'auto' }}
+          style={{ 
+            maxHeight: 'calc(100vh - 200px)',
+            overflowY: 'auto',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column'
+          }}
         >
           {selectedTab === 0 && <InfoCard selectedLocation={selectedLocation} formattedData={formattedData} />}
           {selectedTab === 1 && <WeatherComponent name={selectedLocation.name} />}
