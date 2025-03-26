@@ -2,3 +2,56 @@
     padding: 16px;
 
 }
+
+.metricsContainer {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.box{
+    border-radius: 16px;
+    background-color: #e7e7e7;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #e7e7e7;
+    text-align: left;
+}
+.pressure_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.MuiGauge-valueText{
+    display: none;
+}
+.MuiGauge-label{
+    display: none;
+}
+.pressure_value{
+    margin-left: 20px;
+}
+
+.uv_container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.uv_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.uv_value {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
