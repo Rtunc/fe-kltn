@@ -12,7 +12,7 @@ const WeatherComponent = ({ name }) => {
     const fetchWeatherData = async () => {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=9d026f9defad1a66e14194bf4ac5425b`
+          `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`
         );
         
         if (!response.ok) {
